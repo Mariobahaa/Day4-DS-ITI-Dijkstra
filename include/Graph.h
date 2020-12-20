@@ -68,7 +68,7 @@ public:
             DijkstraRecord*tableRecord = Table.BeginIteration();
             while(tableRecord!=NULL)
             {
-                if(tableRecord->cost<LCRecord->cost)
+                if(tableRecord->cost<LCRecord->cost && !tableRecord->known)
                     LCRecord = tableRecord;
                 tableRecord = Table.GetNext();
             }
@@ -82,19 +82,35 @@ public:
             {
                 Vertex*childVertex = edge->Adjacent;
                 float edgeWeight= edge->Weight;
-                cout<<childVertex->Key << endl;
-                cout<< edgeWeight << endl;
-
 
                 //find record of that child
+                DijkstraRecord*childRecord = Table.BeginIteration();
+                while(childRecord->vertx!=childVertex && childRecord->vertx!=NULL)
+                    childRecord = Table.GetNext();
 
                 //update its cost if lower
                 //add graph vertex to record's path
+                if(childRecord->cost>(edgeWeight+LCRecord->cost))
+                {
+                    childRecord->cost = (edgeWeight+LCRecord->cost);
+                    childRecord->path = LCRecord;
+                }
+
                 //go to next child
                 edge =  graphVertex->Edges.GetNext();
             }
         }
-
+        DijkstraRecord*r= Table.BeginIteration();
+        while(r!=NULL)
+        {
+            cout<< r->vertx->Key <<endl;
+            cout<< r->cost << endl;
+            cout<< r->known <<endl ;
+            if(r->path!=NULL)
+            cout<< r->path->vertx->Key<<endl;
+            cout<<endl<<endl;
+            r=Table.GetNext();
+        }
 
     }
 };
