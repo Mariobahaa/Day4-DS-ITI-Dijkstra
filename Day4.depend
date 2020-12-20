@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1608207145 source:d:\work\instructor\ds\intake 41\samrt\day4\main.cpp
+	<iostream>
+	"Graph.h"
+
+1608208788 d:\work\instructor\ds\intake 41\samrt\day4\include\graph.h
+	"LinkedList.h"
+	"Vertex.h"
+
+1608202565 d:\work\instructor\ds\intake 41\samrt\day4\include\linkedlist.h
+
+1608208717 d:\work\instructor\ds\intake 41\samrt\day4\include\vertex.h
+
+1608422469 source:e:\career\iti\cdb\day4-ds-iti\main.cpp
+	<iostream>
+	"Graph.h"
+
+1608423032 e:\career\iti\cdb\day4-ds-iti\include\graph.h
+	"LinkedList.h"
+	"Vertex.h"
+	"DijkstraRecord.h"
+
+1608202565 e:\career\iti\cdb\day4-ds-iti\include\linkedlist.h
+
+1608208717 e:\career\iti\cdb\day4-ds-iti\include\vertex.h
+
+1608421763 e:\career\iti\cdb\day4-ds-iti\include\dijkstrarecord.h
+	<iostream>
+	"Vertex.h"
+
