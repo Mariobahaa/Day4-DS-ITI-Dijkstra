@@ -68,6 +68,7 @@ public:
             DijkstraRecord*tableRecord = Table.BeginIteration();
             while(tableRecord!=NULL)
             {
+                if(LCRecord->known) LCRecord = tableRecord;
                 if(tableRecord->cost<LCRecord->cost && !tableRecord->known)
                     LCRecord = tableRecord;
                 tableRecord = Table.GetNext();
