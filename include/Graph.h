@@ -12,14 +12,13 @@ class Graph
 public:
 
     LinkedList<Vertex> vertices;
-    int length;
-    Graph() {length=0;}
+
+    Graph() {}
 
     Vertex* Add(char key)
     {
         Vertex *newVertex = new Vertex(key);
         vertices.Add(newVertex);
-        length++;
 
         return newVertex;
     }
@@ -48,26 +47,65 @@ public:
         }
     }
 
-    void Dijkstra(Vertex*start){
+    void Dijkstra(Vertex*startVertex){
         //Initialize and fill Dijkstra Table
         LinkedList<DijkstraRecord> Table; //Init
-
         Vertex*graphVertex = vertices.BeginIteration();
+        int unknownCnt=0;
+
         while(graphVertex!=NULL)
         {
-            Table.Add(new DijkstraRecord(graphVertex,graphVertex==start));
+            Table.Add(new DijkstraRecord(graphVertex,graphVertex==startVertex));
             graphVertex = vertices.GetNext();
+            unknownCnt++;
+        }
+        // test 1
+
+        while(unknownCnt>0)
+        {
+            //Find Lowest unkown vertex
+            DijkstraRecord*LCRecord= Table.BeginIteration();
+            DijkstraRecord*tableRecord = Table.BeginIteration();
+            while(tableRecord!=NULL)
+            {
+                if(tableRecord->cost<LCRecord->cost)
+                    LCRecord = tableRecord;
+                tableRecord = Table.GetNext();
+            }
+            LCRecord->known=true;
+            graphVertex = LCRecord->vertx;
+            unknownCnt--;
+
+            Edge*edge = graphVertex->Edges.BeginIteration();
+
+            while(edge!=NULL)
+            {
+                Vertex*childVertex = edge->Adjacent;
+                float edgeWeight= edge->Weight;
+                cout<<childVertex->Key << endl;
+                cout<< edgeWeight << endl;
+
+
+                //find record of that child
+
+                //update its cost if lower
+                //add graph vertex to record's path
+                //go to next child
+                edge =  graphVertex->Edges.GetNext();
+            }
         }
 
+
+    }
+};
+
+#endif // GRAPH_H
+
+  /*    1---- Init Test
         DijkstraRecord *r = Table.BeginIteration();
         while(r!=NULL)
         {
             cout << r->vertx->Key << endl;
             cout << r->cost << endl;
             r=Table.GetNext();
-        }
-
-    }
-};
-
-#endif // GRAPH_H
+        }*/
