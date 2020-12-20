@@ -34,14 +34,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/DijkstraRecord.h" />
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/LinkedList.h" />
 		<Unit filename="include/Vertex.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

@@ -47,7 +47,7 @@ public:
         }
     }
 
-    void Dijkstra(Vertex*startVertex){
+    void Dijkstra(Vertex*startVertex,Vertex*endVertex){
         //Initialize and fill Dijkstra Table
         LinkedList<DijkstraRecord> Table; //Init
         Vertex*graphVertex = vertices.BeginIteration();
@@ -101,19 +101,37 @@ public:
                 edge =  graphVertex->Edges.GetNext();
             }
         }
-        DijkstraRecord*r= Table.BeginIteration();
-        while(r!=NULL)
+
+        DijkstraRecord*Record= Table.BeginIteration();
+        while(Record!=NULL)
         {
-            cout<< r->vertx->Key <<endl;
-            cout<< r->cost << endl;
-            cout<< r->known <<endl ;
-            if(r->path!=NULL)
-            cout<< r->path->vertx->Key<<endl;
-            cout<<endl<<endl;
-            r=Table.GetNext();
+            if(Record->vertx==endVertex)
+            {
+                cout << "Path Cost: " << Record->cost;
+                DijkstraRecord*Path = Record->path;
+
+                if(Path==NULL){cout<< "The Start is the end" << endl; return;}
+                cout<<" Path is: ";
+                PrintPath(Path);
+                cout<<endl;
+            }
+
+            Record=Table.GetNext();
         }
 
     }
+
+    private:
+
+    void PrintPath(DijkstraRecord*Path)
+    {
+        if(Path==NULL) return;
+        PrintPath(Path->path);
+        cout<< Path->vertx->Key<< ' ';
+    }
+
+
+    //print path:
 };
 
 #endif // GRAPH_H
@@ -124,5 +142,18 @@ public:
         {
             cout << r->vertx->Key << endl;
             cout << r->cost << endl;
+            r=Table.GetNext();
+        }*/
+
+ /* 2--------- Dijkstra Test
+        DijkstraRecord*r= Table.BeginIteration();
+        while(r!=NULL)
+        {
+            cout<< r->vertx->Key <<endl;
+            cout<< r->cost << endl;
+            cout<< r->known <<endl ;
+            if(r->path!=NULL)
+            cout<< r->path->vertx->Key<<endl;
+            cout<<endl<<endl;
             r=Table.GetNext();
         }*/

@@ -22,7 +22,7 @@ int main()
     graph.AssignEdge(E, C, 2);
 
     //graph.DepthFirst(A);
-    graph.Dijkstra(A);
+    graph.Dijkstra(A,E);
 
     return 0;
 }
